@@ -1,0 +1,32 @@
+require 'net/http'
+require 'uri'
+
+class HttpClient
+  class ConnectionError < StandardError; end
+  def initialize(uri)
+    @uri = URI(uri)
+  end
+
+  def get(path, headers = {})
+    request(Net::HTTP::Get.new(path), default_headers.merge(headers))
+  end
+
+  private
+
+  def request(r, headers)
+    Net::HTTP.start(@uri.host, @uri.port) do |http|
+      headers.each { |k, v| r.add_field k.to_s, v }
+      http.request(r)
+    end
+  rescue Net::ReadTimeout => e
+    raise ConnectionError, e
+  rescue SystemCallError => e
+    raise ConnectionError, e
+  end
+
+  def default_headers
+    {
+      'Content-Type' => 'application/json',
+    }
+  end
+end
