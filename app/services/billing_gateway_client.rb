@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BillingGatewayClient
   CREDENTIALS = Rails.application.secrets.billing_gateway
   URL = '/validate'

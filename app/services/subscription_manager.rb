@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionManager
   class UnknownResponseStatusError < StandardError; end
   class BillingGatewayUnavailable < StandardError; end
@@ -5,7 +7,6 @@ class SubscriptionManager
   def initialize(retry_count)
     @retry_count = retry_count
   end
-
 
   def call
     response = BillingGatewayClient.new.sufficient_founds?
@@ -22,12 +23,9 @@ class SubscriptionManager
   private
 
   def handle_unsuccessful_response
-    if @retry_count > 0
-      @retry_count -= 1
-      call
-    else
-      raise BillingGatewayUnavailable
-    end
+    raise BillingGatewayUnavailable unless @retry_count.positive?
+    @retry_count -= 1
+    call
   end
 
   def parsed_body(body)

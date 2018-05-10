@@ -1,0 +1,26 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/support/request_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'Gemfile'
+    - 'config.ru'
+    - 'Rakefile'
+
+Metrics/LineLength:
+  Max: 120
+
+MethodLength:
+  Max: 35
+
+Metrics/AbcSize:
+   Enabled: false
+
+BlockLength:
+  Max: 70
+
+Documentation:
+  Enabled: false

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class SubscriptionController < ApplicationController
-
       def create
         subscription = Subscription.new(subscription_params)
         if subscription.save
@@ -11,9 +12,8 @@ module Api
         end
       end
 
-      def index_valid
-        binding.pry
-      #   todo: all valid subscription with date
+      def index
+        render json: Subscription.valid
       end
 
       private

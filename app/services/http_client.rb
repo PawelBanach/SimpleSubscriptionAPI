@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'uri'
 
@@ -13,10 +15,10 @@ class HttpClient
 
   private
 
-  def request(r, headers)
+  def request(req, headers)
     Net::HTTP.start(@uri.host, @uri.port) do |http|
-      headers.each { |k, v| r.add_field k.to_s, v }
-      http.request(r)
+      headers.each { |k, v| req.add_field k.to_s, v }
+      http.request(req)
     end
   rescue Net::ReadTimeout => e
     raise ConnectionError, e
@@ -26,7 +28,7 @@ class HttpClient
 
   def default_headers
     {
-      'Content-Type' => 'application/json',
+      'Content-Type' => 'application/json'
     }
   end
 end
