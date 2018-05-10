@@ -24,7 +24,7 @@ module Api
 
       def subscription_period
         # I made subscription period id days, but minutes/seconds probably would be more accurate
-        period = params.require(:subscription).require(:period)
+        period = params.require(:subscription).require(:period).to_i
         { activated_at: Time.now, next_payment_at: period.day.from_now }
       end
     end

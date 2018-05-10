@@ -1,24 +1,26 @@
-# README
+# SimpleSubscriptionApi
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project setup:
 
-Things you may want to cover:
+1. `bundle`
+2. `rake db:setup`
+3. `raek db:migrate`
+4. `rails c`
 
-* Ruby version
+Run tests (_few tests still todo_):
 
-* System dependencies
+`bundle exec rspec`
 
-* Configuration
+Code coverage:
 
-* Database creation
+`http://localhost:63342/SimpleSubscriptionAPI/coverage/index.html`
 
-* Database initialization
+or in folder:
 
-* How to run the test suite
+`coverage/index.html`
 
-* Services (job queues, cache servers, search engines, etc.)
+Static code analyzer:
 
-* Deployment instructions
+`rubocop`
 
-* ...
+`rails_best_practices .`
